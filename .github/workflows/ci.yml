@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate project structure
+        run: |
+          echo "Checking required files..."
+          test -f README.md
+          test -f CLAUDE.md
+          test -f docs/vision.md
+          echo "All checks passed."
